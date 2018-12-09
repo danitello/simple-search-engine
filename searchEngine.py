@@ -1,5 +1,6 @@
 import requests
 import csv
+from operator import itemgetter
 from bs4 import BeautifulSoup
 
 class SearchEngine:
@@ -33,6 +34,8 @@ class SearchEngine:
                     termCount += 1
             if termCount > 0:
                 result.append([url, values[1], termCount])
+        
+        result = sorted(result, key=itemgetter(2), reverse=True)
         return result
 
 
