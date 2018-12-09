@@ -24,8 +24,7 @@ class SearchEngine:
     def search(self, term):
         ''' Searches index for matching term '''
         
-        term = term.lower()
-        result = {}
+        result = []
         for url, values in self.sitesDict.items():
            
             termCount = 0
@@ -33,7 +32,7 @@ class SearchEngine:
                 if term == word.lower():
                     termCount += 1
             if termCount > 0:
-                result[url] = termCount
+                result.append([url, values[1], termCount])
         return result
 
 

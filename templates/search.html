@@ -18,16 +18,30 @@
 </header>
 
 <body>
-    <!-- <form>
+    <form method="POST" action="/search/">
             <div class="form-group" style="margin-left:20%; margin-right: 20%;
                 margin-bottom: 50px;">
-              <input type="url" class="form-control" id="urlInput" placeholder="http..">
+              <input type="text" class="form-control" name="searchTermInput" placeholder="search for..">
             </div>
             <div style="text-align: center">
-                <button type="submit" class="btn btn-primary">Index</button>
-                <button type="reset" class="btn btn-danger">Clear</button>
+                <button type="submit" class="btn btn-success">Search</button>
             </div>
-    </form> -->
+    </form>
+
+    <div style="margin-left: 50px">
+            {% if resultList %}
+                <h4>Found {{ listSize }} result(s)</h4>
+                
+                <ul>
+                    {% for result in resultList %}
+                        <li>
+                            <a href={{result[0]}}>{{ result[1] }}</a>
+                            <h6>Occurence(s): {{ result[2] }}</h6>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
 
 
 </body>
