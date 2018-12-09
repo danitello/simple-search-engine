@@ -44,6 +44,10 @@ class SearchEngine:
         # to prevent infinitely going back over the same ones
         self.indexedSites = set()
 
+        # Number of pages and words indexed this time
+        self.numPagesIndexed = 0
+        self.numWordsIndexed = 0
+
         self.getLinksFromURL(url, url, 1, maxDepth)
 
         with open('sites.csv', 'w', newline='') as f:
@@ -54,6 +58,8 @@ class SearchEngine:
                     writeList = [key]
                     writeList += value
                     writer.writerow(writeList)
+
+        return self.numPagesIndexed, self.numWordsIndexed
 
 
     def getLinksFromURL(self, url, fromURL, currentDepth, maxDepth):
@@ -71,13 +77,15 @@ class SearchEngine:
         for elem in soup(["script", "style"]):
             elem.extract()
         words = soup.get_text().split()
+        print(r.url, soup.title)
 
         # Write new site information into dict
         if not soup.title == None and not soup.title.string.startswith("404"):
             self.sitesDict[url] = [soup.title.string.strip()] + words
             self.indexedSites.add(url)
-    
-        # TODO: Add words to file as wellwell
+            self.numPagesIndexed += 1
+            self.numWordsIndexed += len(words)
+            
 
         # Extract child links
         if currentDepth < maxDepth:
@@ -85,7 +93,6 @@ class SearchEngine:
                 newURL = link.get("href")
                 if newURL is not None:
                     newURL = newURL.strip("/")
-                    print(url, newURL)
                     if not newURL.startswith("http"):
                         newURL = fromURL + "/" + newURL
                     if newURL not in self.indexedSites:
