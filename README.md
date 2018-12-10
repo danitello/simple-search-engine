@@ -5,7 +5,7 @@ User can construct an index and search it using a simple interface to display si
 ## Dependencies
 Tested in python3
 * flask
-* beautifulSoup4
+* beautifulsoup4
 * requests
 
 ## Running
@@ -15,6 +15,10 @@ git clone https://github.com/danitello/simple-search-engine.git
 ```
 
 From within /simple-search-engine/ run
+```
+pip3 install -r requirements.txt
+```
+then
 ```
 python3 app.py
 ```

@@ -27,7 +27,6 @@ class SearchEngine:
         
         result = []
         for url, values in self.sitesDict.items():
-           
             termCount = 0
             for string in values[1:]:
                 if term == string.lower():
@@ -83,7 +82,7 @@ class SearchEngine:
 
         # Write new site information into dict
         if not soup.title == None and not soup.title.string.startswith("404"):
-            print(url, soup.title.string)
+            # print(url, soup.title.string) # Uncomment to see progress in terminal
             self.sitesDict[url] = [soup.title.string.strip()] + words
             self.indexedSites.add(url)
             self.numPagesIndexed += 1
