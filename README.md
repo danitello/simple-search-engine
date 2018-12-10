@@ -32,8 +32,7 @@ On the "Index" tab, enter urls (including "http") into the search bar to index t
 ### Searching
 On the "Search" tab, enter a single word into the search bar to search for that word from your index. This displays a list of links to relevant sites ranked by the number of occurances of the search query.
 
-## Improvements
-## Possible future additions
+## Possible future improvements
 * Implement rel="next" for paginated content
 * Handle possible exceptions individually (ConnectionError, HTTPError, Timeout, TooManyRedirects, etc.)
 * Optimize read/write of data and move to cloud architecture for deployment
